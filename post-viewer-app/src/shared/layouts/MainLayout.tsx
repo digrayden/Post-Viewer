@@ -1,11 +1,12 @@
 import Header from "../../widgets/LayoutHeader/Header";
 import Footer from "../../widgets/LayoutFooter/Footer";
+import PostList from "../../widgets/PostList/PostList";
 
 const MainLayout = () => {
   return (
     <div>
       <Header />
-      <h1>Hello World</h1>
+      <PostList />
       <Footer />
     </div>
   )
