@@ -1,15 +1,19 @@
-import Header from "../../widgets/LayoutHeader/Header";
-import Footer from "../../widgets/LayoutFooter/Footer";
-import PostList from "../../widgets/PostList/PostList";
+interface MainLayoutProp {
+  header: React.ReactNode;
+  footer: React.ReactNode;
+  children: React.ReactNode;
+}
 
-const MainLayout = () => {
+const MainLayout = ({ header, footer, children }: MainLayoutProp) => {
   return (
     <div>
-      <Header />
-      <PostList />
-      <Footer />
+      {header}
+      <main>
+        {children}
+      </main>
+      {footer}
     </div>
-  )
-}
+  );
+};
 
 export default MainLayout
