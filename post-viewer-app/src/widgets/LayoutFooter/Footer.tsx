@@ -1,5 +1,9 @@
 const Footer = () => {
-  return <footer>Footer for Posts Viewer</footer>;
+  return (
+  <footer className="footer">
+    <p>Create by Diana Grayden</p>
+  </footer>
+  );
 };
 
 export default Footer

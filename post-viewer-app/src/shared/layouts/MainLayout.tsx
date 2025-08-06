@@ -6,9 +6,9 @@ interface MainLayoutProp {
 
 const MainLayout = ({ header, footer, children }: MainLayoutProp) => {
   return (
-    <div>
+    <div className="container">
       {header}
-      <main>
+      <main className="main">
         {children}
       </main>
       {footer}
