@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Button from '../../shared/ui/Button/Button'
 import Modal from '../../shared/ui/Modal/Modal'
+import { ThemeSwitcher } from '../../features/ThemeSwitcher/ui/ThemeSwitcher'
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -11,6 +12,7 @@ const Header = () => {
         <h1 className="header_title">Post Viewer</h1>
         <div className="header_buttons">
           <Button onClick={() => setIsModalOpen(true)}>About</Button>
+          <ThemeSwitcher />
         </div>
       </div>
 
