@@ -1,6 +1,13 @@
 import { useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { createContext, useContext } from 'react'
+
+interface ModalTypeContext {
+  onClose: () => void
+}
+
+const ModalContext = createContext<ModalTypeContext | null>(null)
 
 interface ModalProps {
   children: ReactNode
@@ -21,16 +28,48 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
   if (!isOpen) return null
 
   return createPortal(
+    <ModalContext.Provider value={{ onClose }}>
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         {children}
-        <button className="modal-close" onClick={onClose}>
-          x
-        </button>
       </div>
-    </div>,
+    </div>
+    </ModalContext.Provider>,
     document.body
   )
 }
+
+const ModalHeader = ({ children}: { children: ReactNode}) => {
+  const context = useContext(ModalContext)
+  
+  return (
+    <div className='modal-header'>
+      <h2 className="modal-title">{children}</h2>
+      <button className='modal-close' onClick={context!.onClose}>
+        x
+      </button>
+    </div>
+  )
+}
+
+const ModalBody = ({ children}: { children: ReactNode}) => {
+  return (
+    <div className='modal-body'>
+      {children}
+    </div>
+  )
+}
+
+const ModalFooter = ({ children}: { children: ReactNode}) => {
+  return (
+    <div className='modal-footer'>
+      {children}
+    </div>
+  )
+}
+
+Modal.Header = ModalHeader
+Modal.Body = ModalBody
+Modal.Footer = ModalFooter
 
 export default Modal

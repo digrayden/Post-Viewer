@@ -197,3 +197,20 @@ body {
   color: var(--main-text);
   text-align: center;
 }
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-body {
+  margin-bottom: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
