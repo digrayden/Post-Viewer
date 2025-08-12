@@ -1,20 +1,31 @@
 import PostCard from "../../entities/post/ui/PostCard";
-import { Fragment } from "react";
-
-const somePosts = [
-  {id: 1, title: 'First post', body: 'Aliqua adipisicing quis laboris excepteur voluptate magna aliquip officia est occaecat anim nulla. Fugiat consequat in sint non ipsum nulla laboris deserunt fugiat. Ex amet enim ipsum aliqua. Aliqua nisi aute aliqua sint do adipisicing nisi reprehenderit eu commodo aliquip aliqua. Ut velit cillum mollit voluptate velit enim exercitation ea laboris in.'},
-  {id: 2, title: 'Second post', body: 'Aliqua adipisicing quis laboris excepteur voluptate magna aliquip officia est occaecat anim nulla. Fugiat consequat in sint non ipsum nulla laboris deserunt fugiat. Ex amet enim ipsum aliqua. Aliqua nisi aute aliqua sint do adipisicing nisi reprehenderit eu commodo aliquip aliqua. Ut velit cillum mollit voluptate velit enim exercitation ea laboris in.'},
-  {id: 3, title: 'Third post', body: 'Aliqua adipisicing quis laboris excepteur voluptate magna aliquip officia est occaecat anim nulla. Fugiat consequat in sint non ipsum nulla laboris deserunt fugiat. Ex amet enim ipsum aliqua. Aliqua nisi aute aliqua sint do adipisicing nisi reprehenderit eu commodo aliquip aliqua. Ut velit cillum mollit voluptate velit enim exercitation ea laboris in.'},
-];
+import { useCallback, useState } from "react";
+import CommentList from "../../widgets/CommentList/ui/CommentList";
+import { somePosts, someComments } from "./constants";
+import Button from "../../shared/ui/Button/Button";
 
 const PostList = () => {
+  const [showComments, setShowComments] = useState<Record<number, boolean>>({});
+
+  const toggleComments = useCallback((postId: number) => {
+    setShowComments(prev => ({
+      ...prev,
+      [postId]: !prev[postId]
+    }));
+  }, []);
+
   return (
     <div className="post-list">
       <h2 className="post-list_title">Post List</h2>
+      
       {somePosts.map((post) => (
-        <Fragment key={post.id}>
+        <div key={post.id}>
           <PostCard post={post} />
-        </Fragment>
+          <Button onClick={() => toggleComments(post.id)} variant="secondary" size="sm">
+            {showComments[post.id] ? "Hide Comments" : "Show Comments"}
+          </Button>
+          {showComments[post.id] && <CommentList comments={someComments} />}
+        </div>
       ))}
     </div>
   );
