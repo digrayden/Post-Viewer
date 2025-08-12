@@ -3,8 +3,9 @@ import { useCallback, useState } from "react";
 import CommentList from "../../widgets/CommentList/ui/CommentList";
 import { somePosts, someComments } from "./constants";
 import Button from "../../shared/ui/Button/Button";
+import { withLoading } from "../../shared/lib/hoc/HOC";
 
-const PostList = () => {
+const PostListComponent = () => {
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
 
   const toggleComments = useCallback((postId: number) => {
@@ -31,4 +32,5 @@ const PostList = () => {
   );
 };
 
+const PostList = withLoading(PostListComponent)
 export default PostList
