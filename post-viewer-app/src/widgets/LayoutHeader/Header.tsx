@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import Button from '../../shared/ui/Button/Button'
-import Modal from '../../shared/ui/Modal/Modal'
-import { ThemeSwitcher } from '../../features/ThemeSwitcher/ui/ThemeSwitcher'
+import { useState } from 'react';
+import Button from '../../shared/ui/Button/Button';
+import Modal from '../../shared/ui/Modal/Modal';
+import { ThemeSwitcher } from '../../features/ThemeSwitcher/ui/ThemeSwitcher';
+import styles from './Header.module.css';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
-    <header className="header">
-      <div className="header_content">
-        <h1 className="header_title">Post Viewer</h1>
-        <div className="header_buttons">
+    <header className={styles.header}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Post Viewer</h1>
+        <div className={styles.buttons}>
           <Button onClick={() => setIsModalOpen(true)}>About</Button>
           <ThemeSwitcher />
         </div>

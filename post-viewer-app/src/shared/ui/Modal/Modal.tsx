@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { createContext, useContext } from 'react'
-
+import styles from './Modal.module.css';
+        
 interface ModalTypeContext {
   onClose: () => void
 }
@@ -29,8 +30,8 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
 
   return createPortal(
     <ModalContext.Provider value={{ onClose }}>
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.content} onClick={e => e.stopPropagation()}>
         {children}
       </div>
     </div>

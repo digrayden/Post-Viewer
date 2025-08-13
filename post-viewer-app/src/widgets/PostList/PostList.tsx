@@ -5,6 +5,7 @@ import { somePosts, someComments } from "./constants";
 import Button from "../../shared/ui/Button/Button";
 import { withLoading } from "../../shared/lib/hoc/HOC";
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
+import styles from './PostList.module.css';
 
 const PostListComponent = () => {
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
@@ -30,8 +31,8 @@ const PostListComponent = () => {
   const memoizedPosts = useMemo(() => filteredPosts, [filteredPosts]);
 
   return (
-    <div className="post-list">
-      <h2 className="post-list_title">Post List</h2>
+    <div className={styles.list}>
+      <h2 className={styles.title}>Post List</h2>
       
       <PostLengthFilter 
         allPosts={somePosts}
