@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react';
 import { useTheme } from '../../../shared/lib/theme/useTheme';
+import styles from './Button.module.css';
 
 type ButtonProps = ComponentProps<'button'> & {
   variant?: 'primary' | 'secondary';
@@ -16,7 +17,12 @@ const Button = ({
 
   return (
     <button
-      className={`button ${variant} ${size} ${theme}`}
+      className={`
+        ${styles.button}
+        ${styles[variant]} 
+        ${styles[size]} 
+        ${styles[theme]}
+      `}
       {...props}
     >
       {children}

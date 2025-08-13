@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
-import type { ReactNode } from 'react'
-import { createPortal } from 'react-dom'
+import { useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import styles from './Modal.module.css';
 
 interface ModalProps {
   children: ReactNode
@@ -21,10 +22,10 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
   if (!isOpen) return null
 
   return createPortal(
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.content} onClick={e => e.stopPropagation()}>
         {children}
-        <button className="modal-close" onClick={onClose}>
+        <button className={styles.close} onClick={onClose}>
           x
         </button>
       </div>
