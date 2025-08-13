@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import Button from '../../../shared/ui/Button/Button';
+import styles from './CommentList.module.css';
 
 interface Comment {
   id: number;
@@ -23,7 +24,7 @@ const CommentList = ({ comments, maxPreviewLength = 100 }: CommentListProps) => 
   }, []);
 
   return (
-    <div className="comment-list">
+    <div className={styles.commentList}>
       {comments.map(comment => {
         const isExpand = expandedComments[comment.id];
         const needsTruncation = comment.body.length > maxPreviewLength && !isExpand;
@@ -32,14 +33,14 @@ const CommentList = ({ comments, maxPreviewLength = 100 }: CommentListProps) => 
           : comment.body;
 
         return (
-          <div key={comment.id} className="comment">
+          <div key={comment.id} className={styles.comment}>
             <h4>{comment.name}</h4>
             <p>
               {displayText}
               {needsTruncation && (
                 <Button
                   onClick={() => toggleComment(comment.id)} 
-                  className="show-more-btn" 
+                  className={styles.showMoreBtn} 
                 >
                   Show more
                 </Button>
@@ -47,7 +48,7 @@ const CommentList = ({ comments, maxPreviewLength = 100 }: CommentListProps) => 
               {isExpand && (
                 <Button
                   onClick={() => toggleComment(comment.id)} 
-                  className="show-less-btn"
+                  className={styles.showLessBtn}
                 >
                   Roll up
                 </Button>

@@ -1,0 +1,26 @@
+.commentList {
+  margin-top: 10px;
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  background-color: var(--secondary-color);
+  box-shadow: var(--card-shadow);
+}
+
+.comment {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.comment h4 {
+  margin: 0 0 5px 0;
+}
+
+.showMoreBtn,
+.showLessBtn {
+  margin-left: 8px;
+  color: var(--main-text);
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: underline;
+}

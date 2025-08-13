@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { filterByLength } from '../lib/filterByLength';
+import styles from './PostLengthFilter.module.css';
 
 interface PostLengthFilterProp {
   allPosts: { id: number; title: string; body: string }[];
@@ -21,7 +22,7 @@ const PostLengthFilter = ({ allPosts, onFilter, currentLength }: PostLengthFilte
   };
 
   return (
-    <div className="post-length-filter">
+    <div className={styles.filter}>
       <label>
         Filter by title length (min):
         <input 

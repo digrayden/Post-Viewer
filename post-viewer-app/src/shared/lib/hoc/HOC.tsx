@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
+import styles from './HOC.module.css';
 
 interface WithLoadingProp {
   loading?: boolean;
@@ -19,7 +20,7 @@ export const withLoading = <P extends object>(Component: React.ComponentType<P>)
     }, []);
 
     if (isLoading) {
-      return <div className='loading'>Loading...</div>;
+      return <div className={styles.loading}>Loading...</div>;
     }
 
     return <Component {...props as P} />;

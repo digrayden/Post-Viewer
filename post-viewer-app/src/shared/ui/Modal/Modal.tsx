@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
-import type { ReactNode } from 'react'
-import { createPortal } from 'react-dom'
-import { createContext, useContext } from 'react'
+import { useEffect } from 'react';
+import type { ReactNode } from 'react';
+import { createPortal } from 'react-dom';
+import { createContext, useContext } from 'react';
 import styles from './Modal.module.css';
         
 interface ModalTypeContext {
@@ -44,9 +44,9 @@ const ModalHeader = ({ children}: { children: ReactNode}) => {
   const context = useContext(ModalContext)
   
   return (
-    <div className='modal-header'>
-      <h2 className="modal-title">{children}</h2>
-      <button className='modal-close' onClick={context!.onClose}>
+    <div className={styles.header}>
+      <h2 className={styles.title}>{children}</h2>
+      <button className={styles.close} onClick={context!.onClose}>
         x
       </button>
     </div>
@@ -55,7 +55,7 @@ const ModalHeader = ({ children}: { children: ReactNode}) => {
 
 const ModalBody = ({ children}: { children: ReactNode}) => {
   return (
-    <div className='modal-body'>
+    <div className={styles.body}>
       {children}
     </div>
   )
@@ -63,7 +63,7 @@ const ModalBody = ({ children}: { children: ReactNode}) => {
 
 const ModalFooter = ({ children}: { children: ReactNode}) => {
   return (
-    <div className='modal-footer'>
+    <div className={styles.footer}>
       {children}
     </div>
   )
