@@ -3,14 +3,17 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 #root {
-  margin: 0 auto;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100vw;
+  height: 100vh;
 }

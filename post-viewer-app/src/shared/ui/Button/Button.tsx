@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import { useTheme } from '../../../shared/lib/theme/useTheme';
+import { useTheme } from '../../lib/theme/useTheme';
 import styles from './Button.module.css';
 
 type ButtonProps = ComponentProps<'button'> & {

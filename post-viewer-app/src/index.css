@@ -1,4 +1,5 @@
 @import url(./shared/styles/global.css);
+@import url(./shared/styles/variables.css);
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
