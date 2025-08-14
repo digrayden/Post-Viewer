@@ -1,10 +1,5 @@
+import type { Post } from "../model/types";
 import styles from './PostCard.module.css';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
 
 interface PostCardProp {
   post: Post;
