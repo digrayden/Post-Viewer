@@ -1,4 +1,5 @@
 import type { Post } from "../model/types";
+import styles from './PostCard.module.css';
 
 interface PostCardProp {
   post: Post;
@@ -6,9 +7,9 @@ interface PostCardProp {
 
 const PostCard = ({ post }: PostCardProp) => {
   return (
-    <article className="post-card">
-      <h3 className="post-card_title">{post.title}</h3>
-      <p className="post-card_body">{post.body}</p>
+    <article className={styles.card}>
+      <h3 className={styles.title}>{post.title}</h3>
+      <p className={styles.body}>{post.body}</p>
     </article>
   );
 };

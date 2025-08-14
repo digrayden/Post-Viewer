@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.main {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background: var(--main-bg);
+  box-shadow: var(--card-shadow);
+  flex: 1;
+  color: var(--main-text);
+}
