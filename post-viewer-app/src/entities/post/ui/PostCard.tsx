@@ -1,8 +1,4 @@
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import type { Post } from "../model/types";
 
 interface PostCardProp {
   post: Post;
