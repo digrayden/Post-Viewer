@@ -3,7 +3,7 @@ import styles from './MainLayout.module.css'
 interface MainLayoutProp {
   header: React.ReactNode;
   footer: React.ReactNode;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const MainLayout = ({ header, footer, children }: MainLayoutProp) => {
