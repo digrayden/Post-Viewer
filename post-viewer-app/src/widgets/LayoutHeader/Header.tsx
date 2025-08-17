@@ -3,14 +3,20 @@ import Button from '../../shared/ui/Button/Button';
 import Modal from '../../shared/ui/Modal/Modal';
 import { ThemeSwitcher } from '../../features/ThemeSwitcher/ui/ThemeSwitcher';
 import styles from './Header.module.css';
+import { NavLink } from 'react-router-dom';
+import { UserTabs } from '../../widgets/UserTabs/UserTabs';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
+  const currentUserId = 1;
+  
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <h1 className={styles.title}>Post Viewer</h1>
+        <NavLink to="/" className={styles.logoLink}>
+          <h1 className={styles.title}>Post Viewer</h1>
+        </NavLink>
+        <UserTabs userId={currentUserId} /> 
         <div className={styles.buttons}>
           <Button onClick={() => setIsModalOpen(true)}>About</Button>
           <ThemeSwitcher />
