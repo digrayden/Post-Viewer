@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { filterByLength } from '../lib/filterByLength';
 import styles from './PostLengthFilter.module.css';
+import type { Post } from '../../../widgets/PostList/model/types'
 
 interface PostLengthFilterProp {
-  allPosts: { id: number; title: string; body: string }[];
-  onFilter: (filteredPosts: { id: number; title: string; body: string }[]) => void;
+  allPosts: Post[];
+  onFilter: (filteredPosts: Post[]) => void;
   currentLength: number;
 }
 

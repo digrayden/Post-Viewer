@@ -1,15 +1,17 @@
 import PostCard from "../../entities/post/ui/PostCard";
 import { useCallback, useState, useMemo } from "react";
 import CommentList from "../../widgets/CommentList/ui/CommentList";
-import { somePosts, someComments } from "./constants";
+import { someComments } from "./constants";
 import Button from "../../shared/ui/Button/Button";
 import { withLoading } from "../../shared/lib/hoc/HOC";
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
 import styles from './PostList.module.css';
+import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
 
 const PostListComponent = () => {
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
-  const [filteredPosts, setFilteredPosts] = useState(somePosts);
+  const { posts, isLoading, error } = usePosts();
+  const [filteredPosts, setFilteredPosts] = useState(posts);
   const [currentMinLength, setCurrentMinLength] = useState(0);
 
   const toggleComments = useCallback((postId: number) => {
@@ -19,7 +21,7 @@ const PostListComponent = () => {
     }));
   }, []);
 
-  const handleFilter = useCallback((newFilteredPosts: typeof somePosts) => {
+  const handleFilter = useCallback((newFilteredPosts: typeof posts) => {
     setFilteredPosts(newFilteredPosts);
     if (newFilteredPosts.length > 0) {
       setCurrentMinLength(Math.min(...newFilteredPosts.map(p => p.title.length)));
@@ -30,12 +32,15 @@ const PostListComponent = () => {
 
   const memoizedPosts = useMemo(() => filteredPosts, [filteredPosts]);
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className={styles.list}>
       <h2 className={styles.title}>Post List</h2>
       
       <PostLengthFilter 
-        allPosts={somePosts}
+        allPosts={posts}
         onFilter={handleFilter}
         currentLength={currentMinLength}
       />
