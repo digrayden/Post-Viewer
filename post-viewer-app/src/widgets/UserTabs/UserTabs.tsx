@@ -15,7 +15,7 @@ export const UserTabs = ({ userId }: UserTabsProps) => {
         to="/posts" 
         className={getNavLinkClass}
       >
-        Все посты
+        All posts
       </NavLink>
       <NavLink 
         to={`/users/${userId}/posts`} 
