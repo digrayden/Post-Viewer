@@ -12,6 +12,7 @@
   --secondary-color: #f0f8ff;
   --secondary-hover: #b7ddff;
   --hover-bg-light: rgba(0, 0, 0, 0.05);
+  --error-color: #d32f2f;
 }
 
 :root[data-theme="dark"] {
@@ -28,4 +29,5 @@
   --secondary-color: #1f4068;
   --secondary-hover: #2a4d7a;
   --hover-bg-light: rgba(255, 255, 255, 0.05);
+  --error-color: #d32f2f;
 }

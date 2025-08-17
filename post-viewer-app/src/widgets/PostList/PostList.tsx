@@ -32,8 +32,8 @@ const PostListComponent = () => {
 
   const memoizedPosts = useMemo(() => filteredPosts, [filteredPosts]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (isLoading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>Error: {error}</div>;
 
   return (
     <div className={styles.list}>
