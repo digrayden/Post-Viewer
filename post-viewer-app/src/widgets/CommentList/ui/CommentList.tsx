@@ -1,20 +1,16 @@
 import { useState, useCallback } from 'react';
 import Button from '../../../shared/ui/Button/Button';
 import styles from './CommentList.module.css';
-
-interface Comment {
-  id: number;
-  name: string;
-  body: string;
-}
+import { useComments } from '../model/hooks/useComments';
 
 interface CommentListProps {
-  comments: Comment[];
+  postId: number;
   maxPreviewLength?: number;
 }
 
-const CommentList = ({ comments, maxPreviewLength = 100 }: CommentListProps) => {
+const CommentList = ({ postId, maxPreviewLength = 100 }: CommentListProps) => {
   const [expandedComments, setExpandedComments] = useState<Record<number, boolean>>({});
+  const { comments, isLoading, error } = useComments(postId);
 
   const toggleComment = useCallback((commentId: number) => {
     setExpandedComments(prev => ({
@@ -22,6 +18,9 @@ const CommentList = ({ comments, maxPreviewLength = 100 }: CommentListProps) => 
       [commentId]: !prev[commentId]
     }));
   }, []);
+
+  if (isLoading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>Error: {error}</div>;
 
   return (
     <div className={styles.commentList}>

@@ -1,7 +1,6 @@
 import PostCard from "../../entities/post/ui/PostCard";
 import { useCallback, useState, useMemo } from "react";
 import CommentList from "../../widgets/CommentList/ui/CommentList";
-import { someComments } from "./constants";
 import Button from "../../shared/ui/Button/Button";
 import { withLoading } from "../../shared/lib/hoc/HOC";
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
@@ -51,7 +50,7 @@ const PostListComponent = () => {
           <Button onClick={() => toggleComments(post.id)} variant="primary" size="sm">
             {showComments[post.id] ? "Hide Comments" : "Show Comments"}
           </Button>
-          {showComments[post.id] && <CommentList comments={someComments} />}
+          {showComments[post.id] && <CommentList postId={post.id} />}
         </div>
       ))}
     </div>
