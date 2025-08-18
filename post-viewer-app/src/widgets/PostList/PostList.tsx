@@ -48,7 +48,7 @@ const PostListComponent = () => {
       {memoizedPosts.map((post) => (
         <div key={post.id}>
           <PostCard post={post} />
-          <Button onClick={() => toggleComments(post.id)} variant="secondary" size="sm">
+          <Button onClick={() => toggleComments(post.id)} variant="primary" size="sm">
             {showComments[post.id] ? "Hide Comments" : "Show Comments"}
           </Button>
           {showComments[post.id] && <CommentList comments={someComments} />}

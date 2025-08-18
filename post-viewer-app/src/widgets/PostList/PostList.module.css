@@ -5,6 +5,7 @@
 }
 .title {
   color: var(--main-text);
+  text-align: center;
 }
 
 .loading, .error {
