@@ -1,0 +1,12 @@
+.filter {
+  margin-bottom: 20px;
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  background-color: var(--primary-color);
+  box-shadow: var(--card-shadow);
+}
+
+.filter input {
+  margin-left: 10px;
+  padding: 5px;
+}
