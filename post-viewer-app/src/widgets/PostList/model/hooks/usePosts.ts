@@ -1,27 +1,17 @@
-import { useState, useEffect } from 'react';
-import { postApi } from '../api/postApi';
-import type { Post } from '../types';
+import { useGetPostsQuery } from '../../../../entities/post/api/postsApi';
 
 export const usePosts = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data: posts, isLoading, error } = useGetPostsQuery();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setIsLoading(true);
-      try {
-        const data = await postApi.getAll();
-        setPosts(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const errorMessage = error 
+    ? typeof error === 'object' && 'message' in error 
+      ? (error as { message: string }).message 
+      : 'Unknown error'
+    : null;
 
-    fetchPosts();
-  }, []);
-
-  return { posts, isLoading, error };
+  return {
+    posts: posts || [],
+    isLoading,
+    error: errorMessage,
+  };
 };
