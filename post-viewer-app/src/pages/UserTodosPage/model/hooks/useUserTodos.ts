@@ -1,27 +1,17 @@
-import { useState, useEffect } from 'react';
-import type { Todo } from '../types';
-import { toDoApi } from '../api/userTodosApi';
+import { useGetTodosByUserIdQuery } from '../../../../entities/todo/api/todosApi';
 
 export const useUserToDo = (userId: string) => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data: todos, isLoading, error } = useGetTodosByUserIdQuery(userId);
 
-  useEffect(() => {
-    const fetchUserTodos = async () => {
-      setIsLoading(true);
-      try {        
-        const data = await toDoApi.getToDo(userId);
-        setTodos(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const errorMessage = error 
+    ? typeof error === 'object' && 'message' in error 
+      ? (error as { message: string }).message 
+      : 'Unknown error'
+    : null;
 
-      fetchUserTodos();
-  }, [userId]);
-
-  return { todos, isLoading, error };
+  return {
+    todos: todos || [],
+    isLoading,
+    error: errorMessage,
+  };
 };
