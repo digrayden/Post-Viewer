@@ -1,27 +1,17 @@
-import { useState, useEffect } from 'react';
-import type { Album } from '../types';
-import { albumsApi } from '../api/albumsApi';
+import { useGetAlbumsByUserIdQuery } from '../../../../entities/album/api/albumsApi';
 
 export const useUserAlbums = (userId: string) => {
-  const [albums, setAlbums] = useState<Album[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data: albums, isLoading, error } = useGetAlbumsByUserIdQuery(userId);
 
-  useEffect(() => {
-    const fetchUserAlbums = async () => {
-      setIsLoading(true);
-      try {        
-        const data = await albumsApi.getAlbums(userId);
-        setAlbums(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const errorMessage = error 
+    ? typeof error === 'object' && 'message' in error 
+      ? (error as { message: string }).message 
+      : 'Unknown error'
+    : null;
 
-      fetchUserAlbums();
-  }, [userId]);
-
-  return { albums, isLoading, error };
+  return {
+    albums: albums || [],
+    isLoading,
+    error: errorMessage,
+  };
 };
