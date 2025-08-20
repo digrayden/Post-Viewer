@@ -1,27 +1,17 @@
-import { useState, useEffect } from 'react';
-import { postApi } from '../api/commentsApi';
-import type { Comment } from '../types';
+import { useGetCommentsByPostIdQuery } from '../../../../entities/comment/api/commentsApi';
 
 export const useComments = (postId: number) => {
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { data: comments, isLoading, error } = useGetCommentsByPostIdQuery(postId);
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      setIsLoading(true);
-      try {
-        const data = await postApi.getComments(postId);
-        setComments(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const errorMessage = error 
+    ? typeof error === 'object' && 'message' in error 
+      ? (error as { message: string }).message 
+      : 'Unknown error'
+    : null;
 
-    fetchComments();
-  }, [postId]);
-
-  return { comments, isLoading, error };
+  return {
+    comments: comments || [],
+    isLoading,
+    error: errorMessage,
+  };
 };
