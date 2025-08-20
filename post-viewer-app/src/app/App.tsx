@@ -1,14 +1,17 @@
 import { ThemeProvider } from '../shared/lib/theme/ThemeProvider';
 import RouterProvider from './providers/router/RouterProvider';
 import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from './providers/store/StoreProvider';
 
 function App() {
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <RouterProvider />
-      </BrowserRouter>
-    </ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <RouterProvider />
+        </BrowserRouter>
+      </ThemeProvider>
+    </StoreProvider>
   )
 }
 
