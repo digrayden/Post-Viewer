@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { filterByLength } from '../lib/filterByLength';
 import styles from './PostLengthFilter.module.css';
-import type { Post } from '../../../widgets/PostList/model/types'
+import type { Post } from '../../../entities/post/model/types'
 
 interface PostLengthFilterProp {
   allPosts: Post[];

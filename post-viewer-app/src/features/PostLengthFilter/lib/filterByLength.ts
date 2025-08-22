@@ -1,4 +1,4 @@
-import type { Post } from "../../../widgets/PostList/model/types"
+import type { Post } from "../../../entities/post/model/types"
 
 export const filterByLength = (
   posts: Post[],
