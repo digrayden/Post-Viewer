@@ -1,19 +1,17 @@
-import MainLayout from '../shared/layouts/MainLayout';
-import Header from '../widgets/LayoutHeader/Header';
-import Footer from '../widgets/LayoutFooter/Footer';
-import PostList from '../widgets/PostList/PostList';
 import { ThemeProvider } from '../shared/lib/theme/ThemeProvider';
+import RouterProvider from './providers/router/RouterProvider';
+import { BrowserRouter } from 'react-router-dom';
+import { StoreProvider } from './providers/store/StoreProvider';
 
 function App() {
-    return (
+  return (
+    <StoreProvider>
       <ThemeProvider>
-    <MainLayout 
-      header={<Header />}
-      footer={<Footer />}
-    >
-      <PostList />
-    </MainLayout>
-    </ThemeProvider>
+        <BrowserRouter>
+          <RouterProvider />
+        </BrowserRouter>
+      </ThemeProvider>
+    </StoreProvider>
   )
 }
 

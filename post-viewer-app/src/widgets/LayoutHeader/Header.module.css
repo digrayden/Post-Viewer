@@ -16,9 +16,15 @@
 .title {
   margin: 0;
   font-size: 2rem;
+  color: var(--header-footer-text);
+  white-space: nowrap;
 }
 
 .buttons {
   display: flex;
   gap: 20px;
+}
+
+.logoLink {
+  text-decoration: none;
 }

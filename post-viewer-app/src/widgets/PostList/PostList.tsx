@@ -1,11 +1,11 @@
 import PostCard from "../../entities/post/ui/PostCard";
 import { useCallback, useState, useMemo } from "react";
 import CommentList from "../../widgets/CommentList/ui/CommentList";
-import { somePosts, someComments } from "./constants";
 import Button from "../../shared/ui/Button/Button";
 import { withLoading } from "../../shared/lib/hoc/HOC";
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
 import styles from './PostList.module.css';
+import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
 import { filterByLength } from '../../features/PostLengthFilter/lib/filterByLength';
 
 const PostListComponent = () => {
@@ -24,8 +24,11 @@ const PostListComponent = () => {
   }, []);
 
   const filteredPosts = useMemo(() => {
-    return filterByLength(somePosts, minLength);
-  }, [minLength]);
+    return filterByLength(posts, minLength);
+  }, [posts, minLength]);
+
+  if (isLoading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>Error: {error}</div>;
 
   return (
     <div className={styles.list}>
@@ -39,10 +42,10 @@ const PostListComponent = () => {
       {filteredPosts.map((post) => (
         <div key={post.id}>
           <PostCard post={post} />
-          <Button onClick={() => toggleComments(post.id)} variant="secondary" size="sm">
+          <Button onClick={() => toggleComments(post.id)} variant="primary" size="sm">
             {showComments[post.id] ? "Hide Comments" : "Show Comments"}
           </Button>
-          {showComments[post.id] && <CommentList comments={someComments} />}
+          {showComments[post.id] && <CommentList postId={post.id} />}
         </div>
       ))}
     </div>

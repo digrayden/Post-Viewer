@@ -5,4 +5,12 @@
 }
 .title {
   color: var(--main-text);
+  text-align: center;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
 }

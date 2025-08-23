@@ -2,7 +2,6 @@
   margin-top: 10px;
   border: 1px solid var(--card-border);
   padding: 16px;
-  background-color: var(--secondary-color);
   box-shadow: var(--card-shadow);
 }
 
@@ -18,9 +17,16 @@
 .showMoreBtn,
 .showLessBtn {
   margin-left: 8px;
-  color: var(--main-text);
+
   cursor: pointer;
   background: none;
   border: none;
   text-decoration: underline;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
 }

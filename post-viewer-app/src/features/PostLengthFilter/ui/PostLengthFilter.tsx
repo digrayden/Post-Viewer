@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import styles from './PostLengthFilter.module.css';
+import type { Post } from '../../../entities/post/model/types'
 
 interface PostLengthFilterProp {
   onFilter: (minLength: number) => void;
