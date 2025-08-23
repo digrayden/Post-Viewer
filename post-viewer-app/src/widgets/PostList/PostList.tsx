@@ -10,6 +10,7 @@ import { filterByLength } from '../../features/PostLengthFilter/lib/filterByLeng
 
 const PostListComponent = () => {
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
+  const { posts, isLoading, error } = usePosts();
   const [minLength, setMinLength] = useState(0);
 
   const toggleComments = useCallback((postId: number) => {
@@ -19,7 +20,7 @@ const PostListComponent = () => {
     }));
   }, []);
 
- const handleFilter = useCallback((newMinLength: number) => {
+  const handleFilter = useCallback((newMinLength: number) => {
     setMinLength(newMinLength);
   }, []);
 
@@ -35,8 +36,8 @@ const PostListComponent = () => {
       <h2 className={styles.title}>Post List</h2>
       
       <PostLengthFilter 
-              onFilter={handleFilter}
-              currentLength={minLength}
+        onFilter={handleFilter}
+        currentLength={minLength}
       />
 
       {filteredPosts.map((post) => (
