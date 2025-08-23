@@ -1,26 +1,20 @@
-import { useState, useEffect } from 'react';
-import { filterByLength } from '../lib/filterByLength';
+import { useState, useCallback } from 'react';
 import styles from './PostLengthFilter.module.css';
 import type { Post } from '../../../entities/post/model/types'
 
 interface PostLengthFilterProp {
-  allPosts: Post[];
-  onFilter: (filteredPosts: Post[]) => void;
+  onFilter: (minLength: number) => void;
   currentLength: number;
 }
 
-const PostLengthFilter = ({ allPosts, onFilter, currentLength }: PostLengthFilterProp) => {
+const PostLengthFilter = ({ onFilter, currentLength }: PostLengthFilterProp) => {
   const [minLength, setMinLength] = useState(currentLength);
 
-  useEffect(() => {
-    const filtered = filterByLength(allPosts, minLength);
-    onFilter(filtered);
-  }, [minLength, allPosts, onFilter]);
-
-  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilter = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const length = parseInt(e.target.value) || 0;
     setMinLength(length);
-  };
+    onFilter(length);
+  }, [onFilter]);
 
   return (
     <div className={styles.filter}>

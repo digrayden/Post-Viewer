@@ -6,12 +6,11 @@ import { withLoading } from "../../shared/lib/hoc/HOC";
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
 import styles from './PostList.module.css';
 import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
+import { filterByLength } from '../../features/PostLengthFilter/lib/filterByLength';
 
 const PostListComponent = () => {
   const [showComments, setShowComments] = useState<Record<number, boolean>>({});
-  const { posts, isLoading, error } = usePosts();
-  const [filteredPosts, setFilteredPosts] = useState(posts);
-  const [currentMinLength, setCurrentMinLength] = useState(0);
+  const [minLength, setMinLength] = useState(0);
 
   const toggleComments = useCallback((postId: number) => {
     setShowComments(prev => ({
@@ -20,16 +19,13 @@ const PostListComponent = () => {
     }));
   }, []);
 
-  const handleFilter = useCallback((newFilteredPosts: typeof posts) => {
-    setFilteredPosts(newFilteredPosts);
-    if (newFilteredPosts.length > 0) {
-      setCurrentMinLength(Math.min(...newFilteredPosts.map(p => p.title.length)));
-    } else {
-      setCurrentMinLength(0);
-    }
+ const handleFilter = useCallback((newMinLength: number) => {
+    setMinLength(newMinLength);
   }, []);
 
-  const memoizedPosts = useMemo(() => filteredPosts, [filteredPosts]);
+  const filteredPosts = useMemo(() => {
+    return filterByLength(posts, minLength);
+  }, [posts, minLength]);
 
   if (isLoading) return <div className={styles.loading}>Loading...</div>;
   if (error) return <div className={styles.error}>Error: {error}</div>;
@@ -39,12 +35,11 @@ const PostListComponent = () => {
       <h2 className={styles.title}>Post List</h2>
       
       <PostLengthFilter 
-        allPosts={posts}
-        onFilter={handleFilter}
-        currentLength={currentMinLength}
+              onFilter={handleFilter}
+              currentLength={minLength}
       />
 
-      {memoizedPosts.map((post) => (
+      {filteredPosts.map((post) => (
         <div key={post.id}>
           <PostCard post={post} />
           <Button onClick={() => toggleComments(post.id)} variant="primary" size="sm">
