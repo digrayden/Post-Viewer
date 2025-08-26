@@ -1,16 +1,19 @@
-import type { ComponentProps } from 'react';
+import type { ComponentProps, MouseEventHandler, ReactNode } from 'react';
 import { useTheme } from '../../lib/theme/useTheme';
 import styles from './Button.module.css';
 
 type ButtonProps = ComponentProps<'button'> & {
   variant?: 'primary' | 'secondary';
   size?: 'sm' | 'md' | 'lg';
+  children: ReactNode;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 const Button = ({ 
   children, 
   variant = 'primary',
   size = 'md',
+  onClick,
   ...props 
 }: ButtonProps) => {
   const { theme } = useTheme();
@@ -23,6 +26,7 @@ const Button = ({
         ${styles[size]} 
         ${styles[theme]}
       `}
+      onClick={onClick}
       {...props}
     >
       {children}
