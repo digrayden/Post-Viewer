@@ -1,5 +1,6 @@
 import styles from './MainLayout.module.css';
 import { Outlet } from 'react-router-dom';
+import type { PropsWithChildren } from 'react';
 
 interface MainLayoutProp {
   header: React.ReactNode;
@@ -7,7 +8,7 @@ interface MainLayoutProp {
   children?: React.ReactNode;
 }
 
-const MainLayout = ({ header, footer, children }: MainLayoutProp) => {
+const MainLayout = ({ header, footer, children }: PropsWithChildren<MainLayoutProp>) => {
   return (
     <div className={styles.container}>
       {header}
@@ -19,4 +20,4 @@ const MainLayout = ({ header, footer, children }: MainLayoutProp) => {
   );
 };
 
-export default MainLayout
+export default MainLayout;
