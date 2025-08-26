@@ -9,12 +9,6 @@
   color: var(--main-text);
 }
 
-.albumsList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
 .albumCard {
   display: block;
   border: 1px solid var(--card-border);
