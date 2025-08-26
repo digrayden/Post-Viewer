@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import type { ReactNode, ComponentType } from 'react';
 import styles from './HOC.module.css';
 
 interface WithLoadingProp {
@@ -7,9 +7,9 @@ interface WithLoadingProp {
   children?: ReactNode;
 }
 
-export const withLoading = <P extends object>(Component: React.ComponentType<P>) => {
+export const withLoading = <P extends object>(Component: ComponentType<P>) => {
   return (props: P & WithLoadingProp) => {
-    const [isLoading, setIsLoading] = useState<boolean>(props.loading || true);
+    const [isLoading, setIsLoading] = useState<boolean>(props.loading ?? true);
 
     useEffect(() => {
       const timer = setTimeout(() => {
