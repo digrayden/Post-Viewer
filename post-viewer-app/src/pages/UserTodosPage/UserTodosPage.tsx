@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useUserToDo } from '../UserTodosPage/model/hooks/useUserTodos';
+import { useUserToDo } from '../../features/UserTodosPage/model/hooks/useUserTodos';
 import styles from './UserTodosPage.module.css';
 
 export const UserTodosPage = () => {

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useAlbumPhotos } from './model/hooks/useAlbumPhotos';
+import { useAlbumPhotos } from '../../features/AlbumPhotosPage/model/hooks/useAlbumPhotos';
 import styles from './AlbumPhotosPage.module.css';
 
 export const AlbumPhotosPage = () => {

@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { User } from '../types';
+import type { User } from '../model/types';
 
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
