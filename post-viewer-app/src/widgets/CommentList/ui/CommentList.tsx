@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import Button from '../../../shared/ui/Button/Button';
 import styles from './CommentList.module.css';
-import { useComments } from '../model/hooks/useComments';
+import { useComments } from '../../../features/CommentList/model/hooks/useComments';
 
 interface CommentListProps {
   postId: number;

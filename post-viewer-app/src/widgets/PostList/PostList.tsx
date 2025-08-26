@@ -5,7 +5,7 @@ import Button from "../../shared/ui/Button/Button";
 import { withLoading } from "../../shared/lib/hoc/HOC";
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
 import styles from './PostList.module.css';
-import { usePosts } from "../../widgets/PostList/model/hooks/usePosts";
+import { usePosts } from "../../features/PostList/model/hooks/usePosts";
 import { filterByLength } from '../../features/PostLengthFilter/lib/filterByLength';
 
 const PostListComponent = () => {

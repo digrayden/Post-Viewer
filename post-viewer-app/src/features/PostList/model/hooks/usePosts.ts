@@ -1,6 +1,13 @@
 import { useGetPostsQuery } from '../../../../entities/post/api/postsApi';
+import type { Post } from '../../../../entities/post/model/types';
 
-export const usePosts = () => {
+interface UsePostsResult {
+  posts: Post[];
+  isLoading: boolean;
+  error: string | null;
+}
+
+export const usePosts = (): UsePostsResult => {
   const { data: posts, isLoading, error } = useGetPostsQuery();
 
   const errorMessage = error 

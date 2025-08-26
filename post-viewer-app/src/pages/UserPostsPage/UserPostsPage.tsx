@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useUserPosts } from './model/hooks/useUserPosts';
+import { useUserPosts } from '../../features/UserPostsPage/model/hooks/useUserPosts';
 import PostCard from '../../entities/post/ui/PostCard';
 import styles from './UserPostsPage.module.css';
 

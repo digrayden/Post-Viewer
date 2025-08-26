@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useUserAlbums } from './model/hooks/useUserAlbums';
+import { useUserAlbums } from '../../features/UserAlbumsPage/model/hooks/useUserAlbums';
 import styles from './UserAlbumsPage.module.css'
 
 export const UserAlbumsPage = () => {
