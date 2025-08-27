@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { UserTabs } from '../../widgets/UserTabs/UserTabs';
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const currentUserId = 1;
   
   return (
@@ -33,7 +33,7 @@ const Header = () => {
         </Modal.Footer>
       </Modal>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

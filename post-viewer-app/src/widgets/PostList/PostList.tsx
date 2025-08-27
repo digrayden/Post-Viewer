@@ -53,5 +53,5 @@ const PostListComponent = () => {
   );
 };
 
-const PostList = withLoading(PostListComponent)
-export default PostList
+const PostList = withLoading(PostListComponent);
+export default PostList;
