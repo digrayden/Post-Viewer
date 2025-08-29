@@ -1,14 +1,10 @@
 import { useGetPostsQuery } from '../../../../entities/post/api/postsApi';
-import type { Post } from '../../../../entities/post/model/types';
+import { useAppSelector } from '../../../../shared/lib/hooks/useAppSelector';
+import { selectAllPosts } from '../../../../entities/post/model/slice/postSlice';
 
-interface UsePostsResult {
-  posts: Post[];
-  isLoading: boolean;
-  error: string | null;
-}
-
-export const usePosts = (): UsePostsResult => {
-  const { data: posts, isLoading, error } = useGetPostsQuery();
+export const usePosts = () => {
+  const { isLoading, error } = useGetPostsQuery();
+  const posts = useAppSelector(selectAllPosts);
 
   const errorMessage = error 
     ? typeof error === 'object' && 'message' in error 
@@ -17,7 +13,7 @@ export const usePosts = (): UsePostsResult => {
     : null;
 
   return {
-    posts: posts || [],
+    posts,
     isLoading,
     error: errorMessage,
   };
