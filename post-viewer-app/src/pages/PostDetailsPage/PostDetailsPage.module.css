@@ -1,0 +1,23 @@
+.container {
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--main-bg);
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.error {
+  color: var(--error-color);
+}
+
+.commentsTitle {
+  margin: 2rem 0 1rem 0;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.5rem;
+}
