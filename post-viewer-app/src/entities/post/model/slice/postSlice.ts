@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import type {  EntityId  } from '@reduxjs/toolkit';
 import type { Post } from '../types';
+import type { RootState } from '../../../../app/providers/store';
 
 const postsAdapter = createEntityAdapter<Post, EntityId>({
   selectId: (post) => post.id,
@@ -26,6 +27,6 @@ export const {
   selectAll: selectAllPosts,
   selectById: selectPostById,
   selectIds: selectPostIds,
-} = postsAdapter.getSelectors();
+} = postsAdapter.getSelectors((state: RootState) => state.posts);
 
 export default postSlice.reducer;
