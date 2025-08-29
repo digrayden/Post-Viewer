@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice  } from '@reduxjs/toolkit';
 import type {  EntityId  } from '@reduxjs/toolkit';
 import type { User } from '../types';
-import type { RootState } from '../../../../app/providers/store';
+import type { RootState } from '../../../../app/providers/store/index';
 
 const usersAdapter = createEntityAdapter<User, EntityId>({
   selectId: (user) => user.id,
