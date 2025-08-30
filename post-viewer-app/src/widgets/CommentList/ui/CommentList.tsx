@@ -1,0 +1,64 @@
+import { useState, useCallback } from 'react';
+import Button from '../../../shared/ui/Button/Button';
+import styles from './CommentList.module.css';
+import { useComments } from '../../../features/CommentList/model/hooks/useComments';
+import type { Comment } from '../../../entities/comment/model/types';
+
+interface CommentListProps {
+  postId: number;
+  maxPreviewLength?: number;
+}
+
+const CommentList = ({ postId, maxPreviewLength = 100 }: CommentListProps) => {
+  const [expandedComments, setExpandedComments] = useState<Record<number, boolean>>({});
+  const { comments, isLoading, error } = useComments(postId);
+
+  const toggleComment = useCallback((commentId: number) => {
+    setExpandedComments(prev => ({
+      ...prev,
+      [commentId]: !prev[commentId]
+    }));
+  }, []);
+
+  if (isLoading) return <div className={styles.loading}>Loading...</div>;
+  if (error) return <div className={styles.error}>Error: {error}</div>;
+
+  return (
+    <div className={styles.commentList}>
+      {comments.map((comment: Comment) => {
+        const isExpand = expandedComments[comment.id];
+        const needsTruncation = comment.body.length > maxPreviewLength && !isExpand;
+        const displayText = needsTruncation 
+          ? `${comment.body.substring(0, maxPreviewLength)}...` 
+          : comment.body;
+
+        return (
+          <div key={comment.id} className={styles.comment}>
+            <h4>{comment.name}</h4>
+            <p>
+              {displayText}
+              {needsTruncation && (
+                <Button
+                  onClick={() => toggleComment(comment.id)} 
+                  className={styles.showMoreBtn} 
+                >
+                  Show more
+                </Button>
+              )}
+              {isExpand && (
+                <Button
+                  onClick={() => toggleComment(comment.id)} 
+                  className={styles.showLessBtn}
+                >
+                  Roll up
+                </Button>
+              )}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default CommentList;

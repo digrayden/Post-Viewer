@@ -1,0 +1,25 @@
+.navigation {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0 2rem;
+}
+
+.navLink {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--header-footer-text);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}

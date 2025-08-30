@@ -1,0 +1,35 @@
+.container {
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--main-text);
+}
+
+.albumCard {
+  display: block;
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  background-color: var(--main-bg);
+}
+
+.albumCard:hover {
+  background-color: var(--hover-bg-light);
+}
+
+.albumId {
+  color: var(--main-text);
+  margin-top: auto;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}

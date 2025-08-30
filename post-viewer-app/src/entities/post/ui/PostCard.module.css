@@ -1,0 +1,25 @@
+.card {
+  border: 1px solid var(--card-border);
+  padding: 16px;
+  background-color: var(--main-bg);
+  box-shadow: var(--card-shadow);
+}
+
+.title {
+  margin-top: 0;
+  color: var(--main-text);
+  font-size: 1.2rem;
+}
+
+.body {
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background-color: var(--hover-bg-light);
+}
