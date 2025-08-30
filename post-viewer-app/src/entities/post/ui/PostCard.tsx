@@ -3,12 +3,12 @@ import styles from './PostCard.module.css';
 import { useNavigate } from 'react-router-dom';
 import type { MouseEventHandler } from 'react';
 
-interface PostCardProp {
+interface PostCardProps {
   post: Post;
   clickable?: boolean;
 }
 
-const PostCard = ({ post, clickable = true }: PostCardProp) => {
+const PostCard = ({ post, clickable = true }: PostCardProps) => {
   const navigate = useNavigate();
 
   const handleClick: MouseEventHandler<HTMLDivElement> = () => {

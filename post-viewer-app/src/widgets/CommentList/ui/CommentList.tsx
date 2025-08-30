@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import Button from '../../../shared/ui/Button/Button';
 import styles from './CommentList.module.css';
 import { useComments } from '../../../features/CommentList/model/hooks/useComments';
+import type { Comment } from '../../../entities/comment/model/types';
 
 interface CommentListProps {
   postId: number;
@@ -24,7 +25,7 @@ const CommentList = ({ postId, maxPreviewLength = 100 }: CommentListProps) => {
 
   return (
     <div className={styles.commentList}>
-      {comments.map(comment => {
+      {comments.map((comment: Comment) => {
         const isExpand = expandedComments[comment.id];
         const needsTruncation = comment.body.length > maxPreviewLength && !isExpand;
         const displayText = needsTruncation 

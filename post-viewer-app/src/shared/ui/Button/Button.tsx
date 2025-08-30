@@ -7,6 +7,7 @@ type ButtonProps = ComponentProps<'button'> & {
   size?: 'sm' | 'md' | 'lg';
   children: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
 };
 
 const Button = ({ 
@@ -14,6 +15,7 @@ const Button = ({
   variant = 'primary',
   size = 'md',
   onClick,
+  className = '',
   ...props 
 }: ButtonProps) => {
   const { theme } = useTheme();
@@ -25,6 +27,7 @@ const Button = ({
         ${styles[variant]} 
         ${styles[size]} 
         ${styles[theme]}
+        ${className}
       `}
       onClick={onClick}
       {...props}

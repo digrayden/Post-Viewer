@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import type { ReactNode, ComponentType } from 'react';
 import styles from './HOC.module.css';
 
-interface WithLoadingProp {
+interface WithLoadingProps {
   loading?: boolean;
   children?: ReactNode;
 }
 
 export const withLoading = <P extends object>(Component: ComponentType<P>) => {
-  return (props: P & WithLoadingProp) => {
+  return (props: P & WithLoadingProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(props.loading ?? true);
 
     useEffect(() => {

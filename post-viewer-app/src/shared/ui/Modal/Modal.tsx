@@ -30,7 +30,7 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
   return createPortal(
     <ModalContext.Provider value={{ onClose }}>
       <div className={styles.overlay} onClick={onClose}>
-        <div className={styles.content} onClick={e => e.stopPropagation()}>
+        <div className={styles.content} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
           {children}
         </div>
       </div>
@@ -39,7 +39,11 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
   );
 };
 
-const ModalHeader = ({ children }: { children: ReactNode }) => {
+interface ModalHeaderProps {
+  children: ReactNode;
+}
+
+const ModalHeader = ({ children }: ModalHeaderProps) => {
   const context = useContext(ModalContext);
   
   if (!context) throw new Error('ModalHeader must be used within a Modal');
@@ -54,11 +58,19 @@ const ModalHeader = ({ children }: { children: ReactNode }) => {
   );
 };
 
-const ModalBody = ({ children }: { children: ReactNode }) => {
+interface ModalBodyProps {
+  children: ReactNode;
+}
+
+const ModalBody = ({ children }: ModalBodyProps) => {
   return <div className={styles.body}>{children}</div>;
 };
 
-const ModalFooter = ({ children }: { children: ReactNode }) => {
+interface ModalFooterProps {
+  children: ReactNode;
+}
+
+const ModalFooter = ({ children }: ModalFooterProps) => {
   return <div className={styles.footer}>{children}</div>;
 };
 

@@ -3,16 +3,16 @@ import styles from './ItemList.module.css';
 
 interface ItemListProps<T> {
   items: T[];
-  renderItem: (item: T) => ReactNode;
+  renderItem: (item: T, index: number) => ReactNode;
   className?: string;
 }
 
-export const ItemList = <T,>({ items, renderItem }: ItemListProps<T>) => {
+export const ItemList = <T,>({ items, renderItem, className = '' }: ItemListProps<T>) => {
   return (
-    <div className={styles.list}>
+    <div className={`${styles.list} ${className}`}>
       {items.map((item, index) => (
         <div key={index}>
-          {renderItem(item)}
+          {renderItem(item, index)}
         </div>
       ))}
     </div>
